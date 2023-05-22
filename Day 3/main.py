@@ -12,6 +12,8 @@ if height >= 120:
         bill = 7
         # Even though both are less it will execute the first block if it is less than 12
         print('Youth tickets are pay $7.')
+    elif 45 <= age <= 55:
+        print('Everything is going to be ok. Have a free ride on us.')
     else:
         bill = 12
         print('Adult tickets are pay $12.')
