@@ -45,3 +45,64 @@ map[row][column] = 'X'
 
 # 🚨 Don't change the code below 👇
 print(f"{row1}\n{row2}\n{row3}")
+import random
+
+rock = '''
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+'''
+
+paper = '''
+    _______
+---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________)
+'''
+
+scissors = '''
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+'''
+
+map_choice = [rock, paper, scissors]
+user_choice = int(input('What do you choose? Type 0 for Rock, 1 for Paper, or 2 for Scissors. '))
+if user_choice > 2:
+    print('Invalid number, you lose')
+else:
+    user_hand = map_choice[user_choice]
+    computer_choice = random.randint(0, 2)
+    computer_hand = map_choice[computer_choice]
+
+    print(f'{user_hand}\n Computer chose:\n {computer_hand}')
+
+    if user_hand == map_choice[0]:
+        if computer_hand == map_choice[2]:
+            print('You win')
+        elif computer_hand == map_choice[0]:
+            print('Draw')
+        else:
+            print('You lose.')
+    elif user_hand == map_choice[1]:
+        if computer_hand == map_choice[0]:
+            print('You win')
+        elif computer_hand == map_choice[1]:
+            print('Draw')
+        else:
+            print('You lose.')
+    elif user_hand == map_choice[2]:
+        if computer_hand == map_choice[1]:
+            print('You win.')
+        elif computer_hand == map_choice[2]:
+            print('Draw')
+        else:
+            print('You lose.')
