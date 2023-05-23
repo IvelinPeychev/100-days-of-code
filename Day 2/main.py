@@ -1,3 +1,5 @@
+# ---------------------------------------------------------------- Number input
+
 # 🚨 Don't change the code below 👇
 two_digit_number = input("Type a two digit number: ")
 # 🚨 Don't change the code above 👆
@@ -6,14 +8,20 @@ two_digit_number = input("Type a two digit number: ")
 # Write your code below this line 👇
 print(int(two_digit_number[0]) + int(two_digit_number[1]))
 
+
+# ----------------------------------------------------------------  BMI index of fatness
+
 # 🚨 Don't change the code below 👇
 height = input("enter your height in m: ")
 weight = input("enter your weight in kg: ")
 # 🚨 Don't change the code above 👆
 
 # Write your code below this line 👇
-print(int(float(weight) / (float(height) * (float(height)))))
+# print(int(float(weight) / (float(height) * (float(height)))))
 print(int(float(weight) / (float(height) ** 2)))
+
+
+# ---------------------------------------------------------------- Life calculator
 
 # 🚨 Don't change the code below 👇
 age = input("What is your current age? ")
@@ -28,6 +36,9 @@ months = round(ages_left * 12)
 
 
 print(f'You have {days} days, {weeks} weeks, and {months} months left.')
+
+
+# ---------------------------------------------------------------- Bill calculator
 
 # If the bill was $150.00, split between 5 people, with 12% tip.
 

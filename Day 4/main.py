@@ -1,3 +1,5 @@
+# ---------------------------------------------------------------- Simple manipulations
+
 import random
 
 random_integer = random.randint(1, 5)
@@ -8,6 +10,9 @@ print(random_float)
 
 random_number = random_integer + random_float
 print(random_number)
+
+
+# ---------------------------------------------------------------- Who will pay the bill
 
 # Import the random module here
 #
@@ -24,7 +29,7 @@ name = random.choice(names)
 
 print(f'{name} is going to buy the meal today!')
 
-
+# ---------------------------------------------------------------- Row and column movement
 
 # 🚨 Don't change the code below 👇
 row1 = ["⬜️","️⬜️","️⬜️"]
@@ -42,6 +47,9 @@ row = int(position[1]) - 1
 map[row][column] = 'X'
 
 # Write your code above this row 👆
+
+
+# ---------------------------------------------------------------- Rock, Paper, Scissor
 
 # 🚨 Don't change the code below 👇
 print(f"{row1}\n{row2}\n{row3}")

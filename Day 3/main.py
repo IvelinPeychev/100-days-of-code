@@ -1,3 +1,5 @@
+# ---------------------------------------------------------------- Roller coaster
+
 print("Welcome to the roller coaster!")
 height = int(input("What is your height in cm? "))
 bill = 0
@@ -27,6 +29,8 @@ else:
     print('Sorry, you have to grow taller before you can ride.')
 
 
+# ---------------------------------------------------------------- BMI index of fatness 2.0
+
 # 🚨 Don't change the code below 👇
 height = float(input("enter your height in m: "))
 weight = float(input("enter your weight in kg: "))
@@ -47,6 +51,8 @@ else:
     print(f"Your BMI is {result}, you are clinically obese.")
 
 
+# ---------------------------------------------------------------- Leap or not leap year
+
 # 🚨 Don't change the code below 👇
 year = int(input("Which year do you want to check? "))
 # 🚨 Don't change the code above 👆
@@ -62,6 +68,9 @@ if year % 4 == 0:
         print('Leap year.')
 else:
     print('Not leap year.')
+
+
+# ----------------------------------------------------------------- Pizza price
 
 # 🚨 Don't change the code below 👇
 print("Welcome to Python Pizza Deliveries!")
@@ -84,10 +93,13 @@ if add_pepperoni == 'Y':
     if size == 'S':
         bill += 2
     else:
-         bill +=3
+         bill += 3
 
 if extra_cheese == 'Y':
-    bill +=1
+    bill += 1
+
+
+# ---------------------------------------------------------------- Love calculator
 
 # 🚨 Don't change the code below 👇
 print("Welcome to the Love Calculator!")
@@ -119,6 +131,8 @@ elif 40 <= LoveScore <= 50:
     print(f'Your score is {LoveScore}, you are alright together.')
 else:
     print(f'Your score is {LoveScore}.')
+
+# ---------------------------------------------------------------- Treasure hunting
 
 print('''
 *******************************************************************************

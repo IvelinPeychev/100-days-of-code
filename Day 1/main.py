@@ -1,3 +1,4 @@
+# ---------------------------------------------------------------- Simple printing
 print('Day 1 - Python Print Function')
 print('The function is declared like this:')
 print("print('what to print')")
@@ -13,6 +14,8 @@ print('Hello ' + input('What is your name? '))
 
 
 print(len(input('What is your name? ')))
+
+# ---------------------------------------------------------------- Number switching
 
 # 🚨 Don't change the code below 👇
 a = input("a: ")
@@ -31,6 +34,8 @@ b = c
 # 🚨 Don't change the code below 👇
 print("a: " + a)
 print("b: " + b)
+
+# --------------------------------------------------------------- Band name Generator
 
 print('Welcome to the Brand Name Generator.')
 city = input("What's name of the city you grew up in?\n ")
