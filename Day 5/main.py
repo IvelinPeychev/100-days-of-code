@@ -35,3 +35,18 @@ for number in student_scores:
         max_number = number
 
 print(f'The highest score in the class is: {max_number}')
+even_total = 0
+for i in range(101):
+    if i % 2 == 0:
+        even_total += i
+print(even_total)
+
+for i in range(1, 101):
+    if i % 3 == 0 and i % 5 == 0:
+        print('FizzBuzz')
+    elif i % 3 == 0:
+        print('Fizz')
+    elif i % 5 == 0:
+        print('Buzz')
+    else:
+        print(i)
