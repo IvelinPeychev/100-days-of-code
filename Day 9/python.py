@@ -130,3 +130,51 @@ def add_new_country(country, times_visited, cities):
 add_new_country("Russia", 2, ["Moscow", "Saint Petersburg"])
 print(travel_log)
 
+
+# ---------------------------------------------------------------- Final Project - blind auction program
+
+from art import logo
+
+print(logo)
+print('Welcome to the secret auction program.')
+
+other_bidders = True
+bidders = {}
+
+while other_bidders:
+    name = input('What is your name?: ')
+    bid = int(input('What is your bid?: $'))
+
+    bidders = {
+        name: bid,
+    }
+
+    others = input('Are there any other bidders? Type "yes" or "no". ')
+    if others == 'no':
+        other_bidders = False
+
+
+# winner_bid = 0
+# winner = ''
+# for name in bidders:
+#     bid = bidders[name]
+#     if bid > winner_bid:
+#         winner = name
+#         winner_bid = bid
+#
+# print(f'The winner is {winner} with a bid of ${winner_bid}')
+
+# Same as the above but wrapped in a function
+def find_highest_bidder(bidding_record):
+    winner_bid = 0
+    winner = ''
+    for winner_name in bidding_record:
+        name_bid = bidding_record[winner_name]
+        if name_bid > winner_bid:
+            winner = winner_name
+            winner_bid = name_bid
+
+    print(f'The winner is {winner} with a bid of ${winner_bid}')
+
+
+find_highest_bidder(bidders)
