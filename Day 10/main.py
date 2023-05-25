@@ -57,6 +57,8 @@ print(days)
 
 
 # ---------------------------------------------------------------- Calculator part 1
+from art import logo
+print(logo)
 
 # Add
 def add(n1, n2):
@@ -82,18 +84,32 @@ operations = {
     '/': devide
 }
 
-num1 = int(input("What is the first number? "))
-num2 = int(input("What is the second number? "))
+should_continue = True
 
-for key in operations:
-    print(key)
+# Recursion == a function that calls itself, should use a conditon
 
-operation_symbol = input("Pick an operation from the line above: ")
+def calculator():
+    num1 = float(input("What is the first number? "))
+    for key in operations:
+        print(key)
 
-if operation_symbol in operations:
-    calculation_func = operations[operation_symbol]
-    answer = calculation_func(num1, num2)
+    while should_continue:
+        num2 = float(input("What is the second number? "))
 
-print(f'{num1} {operation_symbol} {num2} = {answer}')
+        operation_symbol = input("Pick an operation from the line above: ")
+
+        if operation_symbol in operations:
+            calculation_func = operations[operation_symbol]
+            answer = calculation_func(num1, num2)
+
+        print(f'{num1} {operation_symbol} {num2} = {answer}')
+
+        if input(f'Type "y to continue calculating with {answer}, or type "n" to start a new calculation: ') == 'y':
+            num1 = answer
+        else:
+            should_continue = False
+            # Recursion
+            calculator()
+
 
 
