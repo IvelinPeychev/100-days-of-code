@@ -1,6 +1,7 @@
 # ---------------------------------------------------------------- Function with outputs
 
 def format_name(f_name, l_name):
+    """ Take a first and last name and format it to return the title case version of the name"""
     if f_name == '' and l_name == '':
         return 'You didn\'t provide anything'
 
@@ -54,3 +55,62 @@ month = int(input("Enter a month: "))
 days = days_in_month(year, month)
 print(days)
 
+# ---------------------------------------------------------------- Calculator part 1
+from art import logo
+
+print(logo)
+
+
+# Add
+def add(n1, n2):
+    return n1 + n2
+
+
+# Subtract
+def subtract(n1, n2):
+    return n1 - n2
+
+
+# Multiply
+def multiply(n1, n2):
+    return n1 * n2
+
+
+# Divide
+def divide(n1, n2):
+    return n1 / n2
+
+
+operations = {
+    '+': add,
+    '-': subtract,
+    '*': multiply,
+    '/': divide
+}
+
+# Recursion == a function that calls itself, should use a condition
+
+
+def calculator():
+    should_continue = True
+    num1 = float(input("What is the first number? "))
+    for key in operations:
+        print(key)
+
+    while should_continue:
+        num2 = float(input("What is the second number? "))
+
+        operation_symbol = input("Pick an operation from the line above: ")
+
+        if operation_symbol in operations:
+            calculation_func = operations[operation_symbol]
+            answer = calculation_func(num1, num2)
+
+        print(f'{num1} {operation_symbol} {num2} = {answer}')
+
+        if input(f'Type "y to continue calculating with {answer}, or type "n" to start a new calculation: ') == 'y':
+            num1 = answer
+        else:
+            should_continue = False
+            # Recursion
+            calculator()
