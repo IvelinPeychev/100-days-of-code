@@ -28,14 +28,22 @@ def blackjack():
     import random
 
     def calculate_score(all_cards):
-        total_score = 0
-        for card in all_cards:
-            total_score += card
-        return total_score
+        """Take a list of cards and returns the sum of them"""
+        # total_score = 0
+        # for card in all_cards:
+        #     total_score += card
+        # return total_score
+        if sum(all_cards) == 21 and len(all_cards) == 2:
+            return 0
+        if 11 in all_cards and sum(all_cards) > 21:
+            all_cards.remove(11)
+            all_cards.append(1)
+
+        return sum(all_cards)
 
     if input("Do you want to play a game of Blackjack? Type 'y' or 'n': ") == "y":
         print(art.logo)
-        player_cards = [random.choice(cards) for card in range(2)]
+        player_cards = [random.choice(cards) for _ in range(2)]
         dealer_cards = [random.choice(cards)]
         print(f'Your cards: {player_cards}')
         print(f'Computer\'s first card: {dealer_cards}')
