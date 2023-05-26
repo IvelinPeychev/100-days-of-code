@@ -55,25 +55,29 @@ month = int(input("Enter a month: "))
 days = days_in_month(year, month)
 print(days)
 
-
 # ---------------------------------------------------------------- Calculator part 1
 from art import logo
+
 print(logo)
+
 
 # Add
 def add(n1, n2):
     return n1 + n2
 
+
 # Subtract
 def subtract(n1, n2):
     return n1 - n2
+
 
 # Multiply
 def multiply(n1, n2):
     return n1 * n2
 
-# Devide
-def devide(n1, n2):
+
+# Divide
+def divide(n1, n2):
     return n1 / n2
 
 
@@ -81,14 +85,14 @@ operations = {
     '+': add,
     '-': subtract,
     '*': multiply,
-    '/': devide
+    '/': divide
 }
 
-should_continue = True
+# Recursion == a function that calls itself, should use a condition
 
-# Recursion == a function that calls itself, should use a conditon
 
 def calculator():
+    should_continue = True
     num1 = float(input("What is the first number? "))
     for key in operations:
         print(key)
@@ -110,6 +114,3 @@ def calculator():
             should_continue = False
             # Recursion
             calculator()
-
-
-
