@@ -5,10 +5,12 @@ import random
 
 def game():
     right_answers = 0
+    option_b = random.choice(game_data.data)
     while True:
-
         print(art.logo)
-        option_a = random.choice(game_data.data)
+        if right_answers > 0:
+            print(f'You\'re right! Current score: {right_answers}')
+        option_a = option_b
         option_b = random.choice(game_data.data)
 
         print(f'Compare A: {option_a["name"]}, {option_a["description"]}, {option_a["country"]}')
@@ -27,7 +29,6 @@ def game():
 
         if user_answer == correct_answer:
             right_answers += 1
-            print(f'You\'re right! Current score: {right_answers}')
         else:
             print(f'Sorry, that\'s wrong. Final score: {right_answers}')
             break
