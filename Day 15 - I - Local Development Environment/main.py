@@ -1,7 +1,5 @@
 from menu import MENU, resources as rs
 
-machine_power_on = True
-
 
 def order_rq(info):
     if info == 'espresso':
@@ -38,66 +36,53 @@ def order_check(order, rss):
         print('Sorry, not enough milk. Money refunded.')
         return False
     else:
-        return True
+        remain_water = water_rss - water
+        remain_coffee = coffee_rss - coffee
+        remain_milk = milk_rss - milk
+
+        return remain_water, remain_coffee, remain_milk
 
 
-def order_execution(order, resources_in_machine, money):
-
-    water_rss = resources_in_machine['water']
-    milk_rss = resources_in_machine['milk']
-    coffee_rss = resources_in_machine['coffee']
-
-    if order == 'espresso':
-        milk = 0
-        water, coffee, price = order_rq(order)
+def order_execution(order, money):
+    if money < MENU[order]['cost']:
+        print(f'Sorry, that\'s not enough money. Money refunded.')
     else:
-        water, coffee, milk, price = order_rq(order)
-
-    remain_water = water_rss - water
-    remain_coffee = coffee_rss - coffee
-    remain_milk = milk_rss - milk
-
-    if money < price:
-        print(f'Sorry, tha\'s not enough money. Money refunded.')
-    else:
-        if money > price:
-            change = round(money - price, 2)
+        if money > MENU[order]['cost']:
+            change = round(money - MENU[order]['cost'], 2)
             print(f'Here is your ${change} in change.')
         print(f'Here is your {order}. Enjoy!')
 
-    return price, remain_water, remain_coffee, remain_milk
+    return MENU[order]['cost']
 
 
-total_money = 0
-while machine_power_on:
+def coffee_machine():
+    machine_power_on = True
+    total_money = 0
+    while machine_power_on:
+        user_choice = input("What would you like? (espresso/latte/cappuccino): ")
+        if user_choice == 'power off':
+            machine_power_on = False
+            print('Turning off...')
+        elif user_choice == 'report':
+            print(f"Water: {rs['water']}ml\n"
+                  f"Milk: {rs['milk']}ml\n"
+                  f"Coffee: {rs['coffee']}g\n"
+                  f"Money: ${total_money}")
+        elif user_choice == 'espresso' or user_choice == 'latte' or user_choice == 'cappuccino':
 
-    user_choice = input("What would you like? (espresso/latte/cappuccino): ")
-    if user_choice == 'power off':
-        machine_power_on = False
-        print('Turning off...')
-    elif user_choice == 'report':
-        print(f"Water: {rs['water']}ml\n"
-              f"Milk: {rs['milk']}ml\n"
-              f"Coffee: {rs['coffee']}g\n"
-              f"Money: ${total_money}")
-    elif user_choice == 'espresso' or user_choice == 'latte' or user_choice == 'cappuccino':
-        print('Please insert coins.')
-        quarters = float(input('How many quarters?: ')) * 0.25
-        dimes = float(input('How many dimes?: ')) * 0.10
-        nickles = float(input('How many nickles?: ')) * 0.05
-        pennies = float(input('How many pennies?: ')) * 0.01
+            if order_check(user_choice, rs):
+                print('Please insert coins.')
+                quarters = float(input('How many quarters?: ')) * 0.25
+                dimes = float(input('How many dimes?: ')) * 0.10
+                nickles = float(input('How many nickles?: ')) * 0.05
+                pennies = float(input('How many pennies?: ')) * 0.01
 
-        user_money = quarters + dimes + nickles + pennies
+                user_money = quarters + dimes + nickles + pennies
 
-        if order_check(user_choice, rs):
-            order_money, machine_watter, machine_coffee, machine_milk = order_execution(user_choice, rs, user_money)
-            total_money += order_money
-            rs['water'] = machine_watter
-            rs['milk'] = machine_milk
-            rs['coffee'] = machine_coffee
-
-    else:
-        print('Invalid command. Please try again.')
+                total_money += order_execution(user_choice, user_money)
+                rs['water'], rs['coffee'], rs['milk'] = order_check(user_choice, rs)
+        else:
+            print('Invalid command. Please try again.')
 
 
-
+coffee_machine()
