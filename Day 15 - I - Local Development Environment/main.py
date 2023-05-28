@@ -17,6 +17,30 @@ def order_rq(info):
         return water, coffee, milk, price
 
 
+def order_check(order, rss):
+    water_rss = rss['water']
+    milk_rss = rss['milk']
+    coffee_rss = rss['coffee']
+
+    if order == 'espresso':
+        milk = 0
+        water, coffee, price = order_rq(order)
+    else:
+        water, coffee, milk, price = order_rq(order)
+
+    if water_rss < water:
+        print('Sorry, not enough water. Money refunded.')
+        return False
+    elif coffee_rss < coffee:
+        print('Sorry, not enough coffee. Money refunded.')
+        return False
+    elif milk_rss < milk:
+        print('Sorry, not enough milk. Money refunded.')
+        return False
+    else:
+        return True
+
+
 def order_execution(order, resources_in_machine, money):
 
     water_rss = resources_in_machine['water']
@@ -29,49 +53,51 @@ def order_execution(order, resources_in_machine, money):
     else:
         water, coffee, milk, price = order_rq(order)
 
-    if water_rss < water:
-        print('Sorry, not enough water')
-    elif coffee_rss < coffee:
-        print('Sorry, not enough coffee')
-    elif milk_rss < milk:
-        print('Sorry, not enough milk')
-    else:
-        remain_water = water_rss - water
-        remain_coffee = coffee_rss - coffee
-        remain_milk = milk_rss - milk
+    remain_water = water_rss - water
+    remain_coffee = coffee_rss - coffee
+    remain_milk = milk_rss - milk
 
     if money < price:
         print(f'Sorry, tha\'s not enough money. Money refunded.')
     else:
         if money > price:
-            change = money - price
+            change = round(money - price, 2)
             print(f'Here is your ${change} in change.')
-        print(f'Here is your {order}. Enjoy')
+        print(f'Here is your {order}. Enjoy!')
 
-    return money, remain_water, remain_coffee, remain_milk
+    return price, remain_water, remain_coffee, remain_milk
 
 
-
+total_money = 0
 while machine_power_on:
-    money_in_machine = 0
 
     user_choice = input("What would you like? (espresso/latte/cappuccino): ")
-    if user_choice != 'report':
+    if user_choice == 'power off':
+        machine_power_on = False
+        print('Turning off...')
+    elif user_choice == 'report':
+        print(f"Water: {rs['water']}ml\n"
+              f"Milk: {rs['milk']}ml\n"
+              f"Coffee: {rs['coffee']}g\n"
+              f"Money: ${total_money}")
+    elif user_choice == 'espresso' or user_choice == 'latte' or user_choice == 'cappuccino':
         print('Please insert coins.')
-        quarters = int(input('How many quarters?: ')) * 0.25
-        dimes = int(input('How many quarters?: ')) * 0.10
-        nickles = int(input('How many quarters?: ')) * 0.5
-        pennies = int(input('How many quarters?: ')) * 0.01
+        quarters = float(input('How many quarters?: ')) * 0.25
+        dimes = float(input('How many dimes?: ')) * 0.10
+        nickles = float(input('How many nickles?: ')) * 0.05
+        pennies = float(input('How many pennies?: ')) * 0.01
 
         user_money = quarters + dimes + nickles + pennies
 
-        money_in_machine += order_execution(user_choice, rs, user_money)
-
-
+        if order_check(user_choice, rs):
+            order_money, machine_watter, machine_coffee, machine_milk = order_execution(user_choice, rs, user_money)
+            total_money += order_money
+            rs['water'] = machine_watter
+            rs['milk'] = machine_milk
+            rs['coffee'] = machine_coffee
 
     else:
-        pass
+        print('Invalid command. Please try again.')
 
 
-    var = order_rq(user_choice)
-    print(var)
+
